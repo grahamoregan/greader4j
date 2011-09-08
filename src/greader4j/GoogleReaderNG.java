@@ -169,5 +169,4 @@ public class GoogleReaderNG {
 			throw new RuntimeException(e);
 		}
 	}
-
 }

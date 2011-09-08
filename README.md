@@ -1,0 +1,1 @@
+This is a simple class to access Google Reader account details from Java. The code was heavily inspired by http://www.chrisdadswell.co.uk/android-coding-example-authenticating-clientlogin-google-reader-api/ but I had to add the ability to get to starred items.
