@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -96,16 +97,41 @@ public class GoogleReaderNG {
 
 		Document doc = get(format(API_URL, "subscription/list"), account);
 
-		Elements links = doc.select("string");
+		Elements links = doc.select("object list object");
 
 		for (Element link : links) {
 
-			String tagText = link.text();
+			String title = null;
 
-			list.add(Link.create(tagText, ""));
+			try {
+				title = link.select("string[name=title]").first().text();
+			} catch (NullPointerException e) {
+				// swallow NPE, occurs from JSoup matching
+			}
+
+			// if we didn't get a title then we won't have a URL
+			if (title != null) {
+
+				String id = null;
+
+				try {
+
+					id = link.select("string[name=id]").first().text();
+
+					id = id.substring("feed/".length(), id.length());
+
+				} catch (NullPointerException e) {
+					e.printStackTrace();
+				}
+
+				list.add(Link.create(title, id));
+
+			}
+
 		}
 
 		return list;
+
 	}
 
 	public List<Link> getStarred(Account account) throws UnsupportedEncodingException, IOException {

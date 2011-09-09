@@ -1,5 +1,7 @@
 package greader4j;
 
+import static java.lang.String.format;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -20,10 +22,13 @@ public class Main {
 
 		GoogleReaderNG reader = new GoogleReaderNG();
 
+		System.out.println("Favourites");
 		for (Link link : reader.getStarred(ctx))
-			System.out.println(link.getTitle());
+			System.out.println(format("\t%s", link.getTitle()));
 
-		reader.getSubscriptions(ctx);
+		System.out.println("Subscriptions");
+		for (Link link : reader.getSubscriptions(ctx))
+			System.out.println(format("\t%s", link.getTitle()));
 
 	}
 
