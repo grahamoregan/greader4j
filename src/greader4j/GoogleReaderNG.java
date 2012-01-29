@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -15,12 +14,13 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 /**
- * This borrows heavily from <a href="http://www.chrisdadswell.co.uk/android-coding-example-authenticating-clientlogin-google-reader-api/"
+ * This borrows heavily from <a href=
+ * "http://www.chrisdadswell.co.uk/android-coding-example-authenticating-clientlogin-google-reader-api/"
  * >Chris Dadswell's blog post</a>
  */
 public class GoogleReaderNG {
 
-	private static final String BASE_URL = "http://www.google.com/reader/%s";
+	private static final String BASE_URL = "https://www.google.com/reader/%s";
 
 	private static final String API_URL = format(BASE_URL, "api/0/%s");
 
